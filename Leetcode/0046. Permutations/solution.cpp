@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    void dfs(vector<int> nums, vector<vector<int>> &result, int start){
+        if(start == nums.size()){
+            result.push_back(nums);
+            return;
+        }
+        
+        for(int i=start;i<nums.size();i++){
+            swap(nums[i],nums[start]);
+            dfs(nums, result, start+1);
+            swap(nums[i],nums[start]);
+        }
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        int k=nums.size();
+        vector<vector<int>> result;
+        
+        dfs(nums, result, 0);
+        
+        return result;
+    }
+};
